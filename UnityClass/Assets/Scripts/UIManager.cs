@@ -14,8 +14,8 @@ public class UIManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        goldText.text = "Gold : " + dataController.GetGold();
-        GoldPerClickText.text = "GoldPerClick : " + dataController.GetGoldPerClick();
+        goldText.text =  ""+dataController.GetGold();
+        GoldPerClickText.text = "" + dataController.GetGoldPerClick();
 
     }
 }

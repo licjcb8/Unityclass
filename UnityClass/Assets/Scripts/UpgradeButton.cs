@@ -6,11 +6,14 @@ public class UpgradeButton : MonoBehaviour {
     public Text UpgradeText;
     public string upgradeName;
 
+    
     public int goldByupgrade;
-    public int startGoldByupgrade = 1;
+    public int startGoldByupgrade;
 
-    public int currentCost = 1;
+
+    public int currentCost;
     public int startCurrentCost;
+
 
     public int level = 1;
 
@@ -19,25 +22,21 @@ public class UpgradeButton : MonoBehaviour {
 
     // Use this for initialization
     void Start() {
-        currentCost = startCurrentCost;
-        level = 1;
-        goldByupgrade = startGoldByupgrade;
+        DataController.GetInstnace().LoadUpgradeButton(this);
         UpdateUI();
     }
 
-    // Update is called once per frame
-    void Update() {
-
-    }
-    public void PurcahseUpgrade()
+    
+       public void PurcahseUpgrade()
     {
-        if (DataController.GetInstnace().GetGold() <= currentCost)
+        if (DataController.GetInstnace().GetGold() >= currentCost)
         {
             DataController.GetInstnace().SubGold(currentCost);
             level++;
             DataController.GetInstnace().AddGoldPerClick(goldByupgrade);
             UpdateUpgrade();
             UpdateUI();
+            DataController.GetInstnace().SaveUpgradeButton(this);
         }
     }
 
